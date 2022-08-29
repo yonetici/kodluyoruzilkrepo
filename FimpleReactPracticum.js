@@ -38,12 +38,7 @@ class Board extends React.Component {
 
     render() {
         const winner = calculateWinner(this.state.squares);
-        let status;
-        if (winner) {
-            status = 'Winner: ' + winner;
-        } else {
-            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-        }
+        let status = (winner) ?'Winner: ' + winner : 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
 
         return (
             <div>
@@ -67,7 +62,6 @@ class Board extends React.Component {
         );
     }
 }
-
 class Game extends React.Component {
     render() {
         return (
@@ -75,17 +69,10 @@ class Game extends React.Component {
                 <div className="game-board">
                     <Board />
                 </div>
-                <div className="game-info">
-                    <div>{/* status */}</div>
-                    <ol>{/* TODO */}</ol>
-                </div>
             </div>
         );
     }
 }
-
-// ========================================
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Game />);
 
@@ -102,6 +89,7 @@ function calculateWinner(squares) {
     ];
     for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
+      console.log('Test:' + squares[a] + " - " + squares[b] + " - " + squares[c]);
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
             return squares[a];
         }
